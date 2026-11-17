@@ -1,0 +1,60 @@
+<script setup>
+  const searchTerm = defineModel()
+
+  const emits = defineEmits(['emitSearch'])
+
+  const emitOnInput = () => {
+    emits('emitSearch')
+  }
+
+</script>
+
+<template>
+  <div class="search-wrapper">
+    <input v-model="searchTerm" @input="emitOnInput" type="text" class="search-input" placeholder="Search for games by title..."
+      autocomplete="off">
+    <span class="search-icon">🎮</span>
+  </div>
+</template>
+
+
+<style scoped>
+.search-wrapper {
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1.5rem 4rem 1.5rem 2rem;
+  font-size: 1.2rem;
+  font-family: 'Exo 2', sans-serif;
+  background: rgba(22, 33, 62, 0.6);
+  border: 2px solid transparent;
+  border-radius: 50px;
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.search-input:focus {
+  border-color: var(--neon-cyan);
+  background: rgba(22, 33, 62, 0.8);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-icon {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--neon-cyan);
+  font-size: 1.5rem;
+  pointer-events: none;
+}
+</style>
